@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-float frandom() {
+float frandom() 
+{
   long int q = random();
   float ret = (float)q/(float)RAND_MAX;
   return ret;
@@ -10,19 +11,21 @@ float frandom() {
 
 float mc_pi(int n)
 {	
-	int pc=0,ps=n;
+ int pc=0,ps=n;
 	
-	for(int i=0; i<n; i++){
-	float x,y,len;
-	x=frandom();
-	y=frandom();
-	len =x*x+y*y;
-	if(len<=1){
-	pc++;
-	}
-	}
-	float pi = 4.0*pc/ps;
-	return pi;
+  for(int i=0; i<n; i++)
+ {
+ float x,y,len;
+  x=frandom();
+  y=frandom();
+	  len =x*x+y*y;
+  if(len<=1)
+  {
+    pc++;
+  }
+ }	  
+  float pi = 4.0*pc/ps;
+  return pi;
 }
 
 
@@ -35,20 +38,24 @@ int main(void) {
   pi1 = mc_pi(25000);
   printf("%f %f\n", pi0, pi1);
   
-  if (pi0 == pi1) {
+  if (pi0 == pi1) 
+  {
       printf("Two separate estimates of pi are exactly the same. This is unlikely.\n");
       abort();
-    }
+  }
 
-  if (fabs(pi0 - pi1) > 0.05) {
+  if (fabs(pi0 - pi1) > 0.05) 
+  {
       printf("Two separate estimates %f and %f are too different.\n", pi0, pi1);
       abort();
   }
 
     
-  for (int i=2000; i<5000; i++) {
+  for (int i=2000; i<5000; i++) 
+  {
     pi0 = mc_pi(i);
-    if (!(fabs(pi0 - M_PI) < 0.4)) {
+    if (!(fabs(pi0 - M_PI) < 0.4)) 
+    {
       printf("Estimate with even %d iterations is %f which is not accurate enough.\n", i, pi0);
       abort();
     }
